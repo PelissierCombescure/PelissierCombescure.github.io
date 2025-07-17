@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StereoLunar Dataset – ICCV 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../assets/icons/moon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Arial', sans-serif; }
+    .jumbotron { padding: 4rem 2rem; background-color: #f8f9fa; }
+    .nav-pills img { transition: opacity 0.2s ease-in-out; }
+    .hover-image-link:hover .first-image { display: none; }
+    .hover-image-link:hover .second-image { display: inline; }
+    .hover-image-link .second-image { display: none; }
+    .img-responsive { max-width: 100%; height: auto; }
+    .copy-button {
+      padding: 10px 20px; font-size: 1rem;
+      background-color: #007bff; color: white;
+      border: none; border-radius: 5px; cursor: pointer;
+    }
+    .copy-button:hover { background-color: #0056b3; }
+    #citation { font-family: monospace; background: #eee; padding: 10px; border-radius: 5px; }
+  </style>
+
+</head>
+<body>
+
+<!-- Banner Section -->
+<section class="jumbotron text-center" id="banner">
+  <div class="container">
+    <h2 class="jumbotron-heading">Adapting Stereo Vision From Objects to 3D Lunar Surface Reconstruction<br> with the StereoLunar Dataset</h2>
+
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-10">
+        <p><strong>Clémentine Grethen</strong><sup>1</sup>, Simone Gasparini<sup>1</sup>, Géraldine Morin<sup>1</sup>, Jérémy Lebreton<sup>2</sup>, Lucas Marti<sup>2</sup>, Manuel Sanchez-Gestido<sup>3</sup></p>
+        <p><sup>1</sup>IRIT, University of Toulouse, France &nbsp;&nbsp;
+           <sup>2</sup>Airbus DS, France &nbsp;&nbsp;
+           <sup>3</sup>ESA, ESTEC, Netherlands</p>
+<p style="color:red;"><strong>International Conference on Computer Vision (ICCV) Workshop “From Street to Space”</strong>, 2025</p>
+      </div>
+    </div>
+
+<div class="row justify-content-center mt-4">
+  <ul class="nav nav-pills justify-content-center text-center" style="width:100%;">
+    <li class="nav-item" style="display:inline-block; margin:0 30px;">
+      <a href="https://openreview.net/forum?id=SOME_ID" class="hover-image-link d-block">
+        <img class="first-image" src="../images/paper.png" width="60px">
+        <img class="second-image" src="../images/paper_hover.png" width="60px">
+        <h5 class="mt-2 mb-0">Paper (coming soon)</h5>
+      </a>
+    </li>
+    <li class="nav-item" style="display:inline-block; margin:0 30px;">
+      <a href="https://github.com/clementinegrethen/StereoLunarDataset" class="hover-image-link d-block">
+        <img class="first-image" src="../images/github.png" width="60px">
+        <img class="second-image" src="../images/github_hover.png" width="60px">
+        <h5 class="mt-2 mb-0">Code (coming soon)</h5>
+      </a>
+    </li>
+  </ul>
+</div>
+</section>
+
+<!-- Abstract -->
+<div class="container mt-5 text-center">
+<h4 class="text-center"><strong>Abstract</strong></h4>
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+    Accurate 3D reconstruction of lunar surfaces is essential for space exploration. However, existing stereo vision reconstruction methods struggle in this context due to the Moon’s lack of texture, difficult lighting variations, and atypical orbital trajectories. State-of-the-art deep learning models, trained on human-scale datasets, have rarely been tested on planetary imagery and cannot be transferred directly to lunar conditions. To address this issue, we introduce LunarStereo, the first open dataset of photorealistic stereo image pairs of the Moon, simulated using ray tracing based on high-resolution topography and reflectance models. It covers diverse altitudes, lighting conditions, and viewing angles around the lunar South Pole, offering physically grounded supervision for 3D reconstruction tasks. Based on this dataset, we adapt the MASt3R model to the lunar domain through fine-tuning on LunarStereo. We validate our approach through extensive qualitative and quantitative experiments on both synthetic and real lunar data, evaluating 3D surface reconstruction and relative pose estimation. Our experiments show significant improvements over zero-shot baselines , demonstrating that our method can generalize to planetary-scale data when the training is properly adapted. This work provides the most realistic and physically grounded benchmark to date for lunar stereo 3D reconstruction, and paves the way for vision models capable of robust cross-scale generalization in extraterrestrial environments.
+  </p>
+</div>
+
+<!-- Overview Figure -->
+<div class="container mt-5 text-center">
+<h4 class="text-center"><strong>1st contribution: StereoLunar dataset Overview</strong></h4>
+  <div class="text-center my-4">
+
+    <img src="../images/lunarstereo.jpg" class="img-responsive" alt="pipeline">
+  </div>
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+    Our dataset is based on DEMs from LRO and uses a physically-based renderer to produce thousands of stereo pairs
+    with dense depth maps, camera poses, and surface normals. The rendering pipeline integrates BRDF models,
+    realistic sun trajectories, and variable noise conditions. 
+  </p>
+</div>
+
+<!-- Results (optional) -->
+<!-- Interactive Results -->
+<div class="container mt-5 text-center">
+  <h4 class="text-center"><strong>1st contribution: StereoLunar dataset examples</strong></h4>
+  <p>Select a stereo pair to visualize some examples of the StereoLunar dataset (2D image + 3D scene):</p>
+
+ <div class="row justify-content-center g-4">
+    <!-- Pair 1 -->
+    <div class="col-md-3">
+      <div class="border p-2">
+        <img src="../images/im_01192.jpg" class="img-fluid mb-2" alt="Pair 1 Left">
+        <img src="../images/im_01193.jpg" class="img-fluid mb-2" alt="Pair 1 Right">
+        <button class="btn btn-primary w-100" onclick="loadScene('../data/pcd_combined_final_scaled.ply')">View 3D</button>
+      </div>
+    </div>
+
+    <!-- Pair 2 -->
+    <div class="col-md-3">
+      <div class="border p-2">
+        <img src="../images/im_00540.jpg" class="img-fluid mb-2" alt="Pair 2 Left">
+        <img src="../images/im_00541.jpg" class="img-fluid mb-2" alt="Pair 2 Right">
+        <button class="btn btn-primary w-100" onclick="loadScene('../data/scene.ply')">View 3D</button>
+      </div>
+    </div>
+
+    <!-- Pair 3 -->
+    <div class="col-md-3">
+      <div class="border p-2">
+        <img src="../images/im_00364.jpg" class="img-fluid mb-2" alt="Pair 3 Left">
+        <img src="../images/im_00365.jpg" class="img-fluid mb-2" alt="Pair 3 Right">
+        <button class="btn btn-primary w-100" onclick="loadScene('../data/zz.ply')">View 3D</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="viewer3d" class="mt-5" style="width: 100%; height: 500px; border: 1px solid #ccc;"></div>
+</div>
+
+
+<!-- Citation -->
+<div class="container mt-5">
+  <h4>Citation</h4>
+  <div id="citation">
+@inproceedings{Grethen2025StereoLunar,<br>
+&nbsp;&nbsp;title={Adapting Stereo Vision From Objects to 3D Lunar Surface Reconstruction with the StereoLunar Dataset},<br>
+&nbsp;&nbsp;author={Clémentine Grethen and Simone Gasparini and Géraldine Morin and Jérémy Lebreton and Lucas Marti and Manuel Sanchez-Gestido},<br>
+&nbsp;&nbsp;booktitle={Proceedings of the ICCV Workshop on From Street to Space},<br>
+&nbsp;&nbsp;year={2025}<br>
+}
+  </div>
+  <div class="text-center mt-3">
+    <button class="copy-button" onclick="copyTextToClipboard()">Copy Citation</button>
+  </div>
+</div>
+
+<!-- Script for copy -->
+<script>
+function copyTextToClipboard() {
+  const text = document.getElementById('citation').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Citation copied to clipboard!");
+  });
+}
+</script>
+<script type="module">
+  import * as THREE from "https://esm.run/three@0.152.2";
+  import { PLYLoader } from "https://esm.run/three@0.152.2/examples/jsm/loaders/PLYLoader.js";
+  import { OrbitControls } from "https://esm.run/three@0.152.2/examples/jsm/controls/OrbitControls.js";
+
+  let scene, camera, renderer, loader, model, controls;
+
+  function initViewer() {
+    const viewer = document.getElementById('viewer3d');
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff); // fond blanc
+
+    camera = new THREE.PerspectiveCamera(60, viewer.clientWidth / viewer.clientHeight, 0.01, 10000);
+    camera.position.set(0, 0, 2);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+    viewer.appendChild(renderer.domElement);
+
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.update();
+
+    loader = new PLYLoader();
+
+    animate();
+  }
+
+  function loadScene(plyFile) {
+    if (model) scene.remove(model);
+
+    loader.load(plyFile, function (geometry) {
+      geometry.computeVertexNormals();
+      geometry.center();
+      const scaleFactor = 1.0 / geometry.boundingBox.max.length();
+      geometry.scale(scaleFactor, scaleFactor, scaleFactor);
+
+      const material = new THREE.PointsMaterial({ size: 0.01, vertexColors: true });
+      model = new THREE.Points(geometry, material);
+      scene.add(model);
+      camera.position.set(0, 0, 2);
+    },
+    // Optional: Add onProgress and onError callbacks for better debugging
+    undefined, // onProgress
+    function (error) {
+        console.error('An error happened loading the PLY file:', error);
+    });
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (model) model.rotation.y += 0.003;
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('load', initViewer);
+  window.loadScene = loadScene; // Make it accessible from the onclick buttons
+</script>
+
+</body>
+</html>
