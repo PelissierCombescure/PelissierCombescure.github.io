@@ -149,3 +149,13 @@ h2 {
 span.highlight {
   background-color: #ffffd0;
 }
+
+.profile-pic {
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  object-position: center 40%; /* moves image down */
+  object-position: center 20%; /* moves image up */
+  
+
+}
