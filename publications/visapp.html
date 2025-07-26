@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Best View Selection – ICCV 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../graphics/favicon.ico"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../graphics/icons/academicons-1.9.4/css/academicons.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <style>
+    body { font-family: 'Arial', sans-serif; }
+    .jumbotron { padding: 4rem 2rem; background-color: #f8f9fa; }
+    .nav-pills img { transition: opacity 0.2s ease-in-out; }
+    .hover-image-link:hover .first-image { display: none; }
+    .hover-image-link:hover .second-image { display: inline; }
+    .hover-image-link .second-image { display: none; }
+    .img-responsive { max-width: 100%; height: auto; }
+    .copy-button {
+      padding: 10px 20px; font-size: 1rem;
+      background-color: #007bff; color: white;
+      border: none; border-radius: 5px; cursor: pointer;
+    }
+    .copy-button:hover { background-color: #0056b3; }
+    #citation { font-family: monospace; background: #eee; padding: 10px; border-radius: 5px; }
+  </style>
+
+</head>
+<body>
+
+<!-- Banner Section -->
+<section class="jumbotron text-center" id="banner">
+  <div class="container">
+    <h2 class="jumbotron-heading">Most Relevant Viewpoint of an Object: a View-Dependent 3D Saliency Approach</h2>
+
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-10">
+        <p><strong>Marie Pelissier-Combescure</strong>, Sylvie Chambon, Géraldine Morin</p>
+        <p>IRIT, University of Toulouse, France &nbsp;&nbsp;</p>
+<p style="color:red;"><strong>VISAPP International Conference on Computer Vision Theory and Applications</em></strong>, 2024, Rome, Italy</p>
+      </div>
+    </div>
+
+<div class="row justify-content-center mt-4">
+  <ul class="nav nav-pills justify-content-center text-center" style="width:100%;">
+    <li class="nav-item" style="display:inline-block; margin:0 30px;">
+      <img class="first-image" src="../graphics/visapp/pipeline_general.png" height="250px"> 
+      <br /><br />
+      <a href="https://hal.science/hal-05007308" target="_blank" rel="noopener noreferrer" style="text-decoration: none">
+        <i class="ai ai-hal" style="font-size: 1.5em; vertical-align: middle; margin-right: 0.3em;"></i>Paper</a>
+      </a>
+    </li>
+  </ul>
+</div>
+</section>
+
+<!-- Abstract -->
+<div class="container mt-5 text-center">
+<h4 class="text-center"><strong>Abstract</strong></h4>
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+    A viewpoint of a 3D object is the position from which we observe the object. 
+    A viewpoint always highlights some 3D parts and discards other parts of an object. 
+    Here, we define a good viewpoint as offering a relevant view of the object: a view that best showcases the object and that is the most representative of the object. 
+    Best view selection plays an essential role in many computer vision and virtual reality applications. 
+    In this paper, given a model and a particular viewpoint, we want to quantify its relevance -not aesthetics. 
+    We propose a geometric method for selecting the most relevant viewpoint for a 3D object by combining visibility and view-dependent saliency.
+    Evaluating the quality of an estimated best viewpoint is a challenge.
+    Thus, we propose an evaluation protocol that considers two different and complementary solutions: a user study with more than 200 participants to collect human preferences and an analysis of image dataset picturing objects of interest. 
+    This evaluation highlights the correlation between our method and human preferences. 
+    A quantitative comparison demonstrates the efficiency of our approach over reference methods.
+  </p>
+</div>
+
+<!-- Overview Figure -->
+<div class="container mt-5 text-center">
+<h4 class="text-center"><strong>Point of View Scoring</strong></h4>
+  <div class="text-center my-4">
+
+    <img src="../graphics/visapp/pipeline.png"  height="350px" >
+  </div>
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+    We propose a relevance measure to automatically select the best viewpoint of a 3D object based on view-dependent 3D saliency.
+    The score for a particular viewpoint (<em>pov</em>) is defined as: </p>
+  <p> <br /><strong>Score(pov) = S(pov) + Se(pov) + Sa(pov)</strong>  </p>
+
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;"><strong>Score Parameters:</strong></p>
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+  Visibility S(pov): Quantifies the proportion of the model’s total 3D surface visible from the given viewpoint. It is computed as the ratio of the visible 3D surface to the total 3D surface.  </p>
+  <br />
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+  Eye Surface Visibility Se(pov): Measures the visibility of the eye surface (if present) from the given viewpoint. It is the ratio of the visible 3D surface of the eyes to their total surface.</p>
+  <br />
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+  Saliency of Visible Vertices Sa(pov): Represents the view-dependent 3D saliency of visible vertices.
+  Computed as the sum of saliency values Si(v) of visible vertices, weighted by an angle-based function f(αv):<br></p>
+  <code>Sa(pov) = ∑ Si(v) · f(αv), for all v ∈ V</code><br>
+  where V is the set of visible vertices from viewpoint pov.
+
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;"><strong>Saliency Parameters:</strong></p>
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+  Intrinsic Saliency Method (Si):</strong> Five different methods were tested, including those by Lee (2005), Song (2014), Tasse (2015), Leifman (2016), and Limper (2016). Limper’s entropy-based multi-scale method gave the best results.</p>
+  <br />
+  <p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+  Angle Function (f):</strong> Five tested functions: cos(αv), √cos(αv), 1−cos(αv), 1−√cos(αv), and 0.5 + (1−√cos(αv))/2. The cosine function was most effective for prioritizing vertices facing the camera. Others that highlight contours may favor accidental views. </p>
+  </ul>
+  </p>
+</div>
+
+<!-- Results (optional) -->
+<!-- Interactive Results -->
+<div class="container mt-5 text-center">
+  <h4 class="text-center"><strong>Visualization Examples</strong></h4>
+  <p>From a particular point of view:</p>
+
+ <div class="row justify-content-center g-4">
+    <!-- Pair 1 -->
+    <div class="col-md-3">
+      <div class="border p-2">
+        <!-- <img src="../images/im_01192.jpg" class="img-fluid mb-2" alt="Gorgoile"> -->
+        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/cow/sommets_visibles_pose_i7-j2.obj')">Gorgoile</button>
+      </div>
+    </div>
+
+    <!-- Pair 2 -->
+    <div class="col-md-3">
+      <div class="border p-2">
+        <!-- <img src="../images/im_00540.jpg" class="img-fluid mb-2" alt="Pair 2 Left">
+        <img src="../images/im_00541.jpg" class="img-fluid mb-2" alt="Pair 2 Right"> -->
+        <button class="btn btn-primary w-100" onclick="loadScene('../data/scene.ply')">View 3D</button>
+      </div>
+    </div>
+
+    <!-- Pair 3 -->
+    <div class="col-md-3">
+      <div class="border p-2">
+        <!-- <img src="../images/im_00364.jpg" class="img-fluid mb-2" alt="Pair 3 Left">
+        <img src="../images/im_00365.jpg" class="img-fluid mb-2" alt="Pair 3 Right"> -->
+        <button class="btn btn-primary w-100" onclick="loadScene('../data/zz.ply')">View 3D</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="viewer3d" class="mt-5" style="width: 100%; height: 500px; border: 1px solid #ccc;"></div>
+</div>
+
+
+<!-- Citation -->
+<div class="container mt-5">
+  <h4>Citation</h4>
+  <div id="citation">
+@inproceedings{Grethen2025StereoLunar,<br>
+&nbsp;&nbsp;title={Adapting Stereo Vision From Objects to 3D Lunar Surface Reconstruction with the StereoLunar Dataset},<br>
+&nbsp;&nbsp;author={Clémentine Grethen and Simone Gasparini and Géraldine Morin and Jérémy Lebreton and Lucas Marti and Manuel Sanchez-Gestido},<br>
+&nbsp;&nbsp;booktitle={Proceedings of the ICCV Workshop on From Street to Space},<br>
+&nbsp;&nbsp;year={2025}<br>
+}
+  </div>
+  <div class="text-center mt-3">
+    <button class="copy-button" onclick="copyTextToClipboard()">Copy Citation</button>
+  </div>
+</div>
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- -------------------------------------------------------------------------------------------- -->
+<!-- Script for copy -->
+<script type="module">
+  import * as THREE from "https://esm.run/three@0.152.2";
+  import { PLYLoader } from "https://esm.run/three@0.152.2/examples/jsm/loaders/PLYLoader.js";
+  import { OBJLoader } from "https://esm.run/three@0.152.2/examples/jsm/loaders/OBJLoader.js";
+  import { OrbitControls } from "https://esm.run/three@0.152.2/examples/jsm/controls/OrbitControls.js";
+
+  let scene, camera, renderer, controls, model;
+  const plyLoader = new PLYLoader();
+  const objLoader = new OBJLoader();
+
+  function initViewer() {
+    const viewer = document.getElementById('viewer3d');
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xffffff);
+
+    camera = new THREE.PerspectiveCamera(60, viewer.clientWidth / viewer.clientHeight, 0.01, 10000);
+    camera.position.set(0, 0, 2);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+    viewer.appendChild(renderer.domElement);
+
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.update();
+
+    animate();
+  }
+
+  function loadScene(filePath) {
+    if (model) scene.remove(model);
+
+    const fileExtension = filePath.split('.').pop().toLowerCase();
+
+    if (fileExtension === 'ply') {
+      plyLoader.load(filePath, geometry => {
+        geometry.computeVertexNormals();
+        geometry.center();
+        const scaleFactor = 1.0 / geometry.boundingBox.max.length();
+        geometry.scale(scaleFactor, scaleFactor, scaleFactor);
+        const material = new THREE.PointsMaterial({ size: 0.01, vertexColors: true });
+        model = new THREE.Points(geometry, material);
+        scene.add(model);
+        camera.position.set(0, 0, 2);
+      }, undefined, error => {
+        console.error('Error loading PLY file:', error);
+      });
+    } else if (fileExtension === 'obj') {
+      objLoader.load(filePath, obj => {
+        model = obj;
+        model.scale.set(0.5, 0.5, 0.5);
+        model.position.set(0, 0, 0);
+        scene.add(model);
+        camera.position.set(0, 0, 2);
+      }, undefined, error => {
+        console.error('Error loading OBJ file:', error);
+      });
+    } else {
+      console.error('Unsupported file format:', fileExtension);
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (model) model.rotation.y += 0.003;
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('load', initViewer);
+  window.loadScene = loadScene;
+</script>
+
+</body>
+</html>
