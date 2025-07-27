@@ -90,6 +90,7 @@ function loadModel(m, p) {
             }
 
             if (model === 'bimba' && param === 'saliency_limper') {
+                console.log("Rotating Bimba model for saliency visualization");
                 currentModel.rotation.x = Math.PI;
             }
 
@@ -119,9 +120,9 @@ function loadModel(m, p) {
 // --- Event Listeners for Buttons ---
 document.getElementById('buttonGorgoile').addEventListener('click', () =>{ model = 'gorgoile'; loadModel(model, param)});
 
-document.getElementById('buttonModelBimba').addEventListener('click', () => { model = 'bimba'; loadModel(model); console.log(model); });
-document.getElementById('buttonModelC').addEventListener('click', () => { model = 'C'; loadModel(model); });
-document.getElementById('buttonModelD').addEventListener('click', () => { model = 'D'; loadModel(model); });
+document.getElementById('buttonModelBimba').addEventListener('click', () => { model = 'bimba';  console.log(model, param);  loadModel(model, param); console.log(model, param); });
+document.getElementById('buttonModelC').addEventListener('click', () => { model = 'C'; loadModel(model, param); });
+document.getElementById('buttonModelD').addEventListener('click', () => { model = 'D'; loadModel(model, param); });
 
 document.getElementById('buttonIntrinsicSaliency').addEventListener('click', () =>{ param = 'saliency_limper'; console.log("xx", model, param); loadModel(model, param); console.log("xx", model, param)});
 document.getElementById('buttonVisibility').addEventListener('click', () =>{ param = "sommets_visibles_centered"; console.log(model, param); loadModel(model, param)});
