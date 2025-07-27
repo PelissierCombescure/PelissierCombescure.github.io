@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Relevance – SCIA 2023</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../graphics/favicon.ico"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" type="text/css" href="../stylesheet.css" /> -->
+  <link  rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../graphics/icons/academicons-1.9.4/css/academicons.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <script src="event_handler.js"></script>
+  <link rel="stylesheet" href="dics.original.css">
+  <script src="dics.original.js"></script>
+
+  <style>
+        .section-divider {
+            border: 0;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 50px 0;
+        }
+        .announcement-box {
+	    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px auto;
+            text-align: center;
+            max-width: 90%;
+        }
+        .announcement-box h2 {
+            color: #2a2e31;
+            /* Light text color */
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .announcement-box p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+        .announcement-box .btn-group a {
+            background-color: #373e47;
+            color: #cf0a0a;
+            border: 1px solid #545d68;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+        .announcement-box .btn-group a:hover {
+            background-color: #444c56;
+            transform: translateY(-2px);
+        }
+        #copy-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #007bff;
+            color: rgb(127, 42, 42);
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        #copy-button:hover {
+            background-color: #0056b3;
+        }
+        .styled-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px 5px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            color: #343a40;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s ease-in-out;
+            background-color: #0a549d;
+        }
+        .styled-btn:hover {
+            background-color: #7a0d30;
+            border-color: #0b7aea;
+        }
+  </style>
+
+</head>
+<body>
+
+<!-- Banner Section -->
+<section class="jumbotron text-center" id="banner">
+  <div class="container">
+    <h2 class="jumbotron-heading">To quantify an image relevance relative to a target 3D object <br /></h2>
+
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-10">
+        <p><strong> <a href="https://pelissiercombescure.github.io">Marie Pelissier-Combescure</a></strong>,  <a href="https://scholar.google.com/citations?user=H8QDhhAAAAAJ&hl=fr">Géraldine Morin</a>, <a href="https://scholar.google.com/citations?user=yquWZwoAAAAJ&hl=fr">Sylvie Chambon</a></p>
+        <p>IRIT, University of Toulouse, France</p>
+        <p style="color:rgb(127, 11, 235);"><strong>The Scandinavian Conference on Image Analysis (SCIA)</strong>, 2023, Levi, Finland</p>
+      </div>
+    </div>
+
+<div class="row justify-content-center mt-4">
+  <ul class="nav nav-pills justify-content-center text-center" style="width:100%;">
+    <li class="nav-item" style="display:inline-block; margin:0 30px;">
+      <img class="first-image" src="../graphics/scia/accroche-scia.png" height="250px"> 
+      <br /><br />
+      <p>Example of three possible defaults. In this figure we illustrate three aspects we want to penalize with the proposed relevance score. </p>
+      <a href="https://hal.science/hal-05007308" target="_blank" rel="noopener noreferrer" style="text-decoration: none">
+        <i class="ai ai-hal" style="font-size: 1.5em; vertical-align: middle; margin-right: 0.3em;"></i>Paper</a>
+      </a>
+    </li>
+  </ul>
+</div>
+</section>
+
+<!-- Abstract -->
+<div class="container mt-5 text-center mb-5">
+<h4 class="text-center"><strong>Abstract</strong></h4>
+<p></p>
+<p style="text-align: justify; max-width: 900px; margin: 0 auto;">
+  Given a 3D object, our purpose is to find, among numerous 2D images within databases, which ones represent this object the best. Selected images should be both informative and offer a relevant view of the object, ie  a pose that presents the essential characteristic information about the 3D object.  
+    To estimate the quality of the view, we propose to rely on repeatable, second order features, extracted with a curvilinear saliency detector, in order to both compute the pose within the image and to build a <em>relevance score</em>, independent of colors and textures.
+    Based on this score, and given a set of images containing the same object, we are able to rank images from the one that best showcases the object to the worst one. 
+    Neural networks dedicated to detection and classification are able to recognise the object with a <em>confidence score</em>. 
+    So, we also develop an automatic approach based on a <em>confidence score</em> extracted from Convolutional Neural Networks. 
+    For evaluating and comparing the deterministic and the learning based methods, we use an objective image ranking based on gradual simulated degradations.  We also provide visual qualitative results on a real dataset. The results demonstrate the efficiency of the approaches, the robustness of the deterministic method and help understanding the behavior of the methods based on <em>confidence score</em>.
+  </p>
+</div>
+
+<!-- Overview Figure -->
+<div class="container;" style=" padding-bottom: 10px;">
+    <ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon">
+        <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent(0)">Sofa n°1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent(1)">Sofa n°2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" onclick="objectSceneEvent(2)">Sofa n°3</a>
+        </li>
+    </ul>
+    <div class="bordered-container">
+    <div class="b-dics" style="width: 60%; font-weight: 600; margin: 0 auto;">
+        <img src="../graphics/scia/197/cropped.png" alt="img">
+        <img src="../graphics/scia/197/mcs_cropped.png" alt="mcs">
+        <img src="../graphics/scia/197/depth_cropped.png" alt="depth map">
+        <img src="../graphics/scia/197/cs_cropped.png" alt="cs">
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

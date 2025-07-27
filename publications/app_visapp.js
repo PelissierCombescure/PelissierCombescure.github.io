@@ -29,6 +29,12 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
 directionalLight.position.set(1, 1, 1).normalize();
 scene.add(directionalLight);
 
+const ambientLight2 = new THREE.AmbientLight(0x404040); // Soft white light
+scene.add(ambientLight2);
+const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.7);
+directionalLight2.position.set(-1, -1, -1).normalize();
+scene.add(directionalLight2);
+
 camera.position.z = 5; // Initial camera position
 
 // --- Model Loading ---
