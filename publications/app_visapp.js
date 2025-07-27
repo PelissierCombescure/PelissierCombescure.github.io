@@ -117,7 +117,9 @@ document.getElementById('buttonModelB').addEventListener('click', () => { model 
 document.getElementById('buttonModelC').addEventListener('click', () => { model = 'C'; loadModel(model); });
 document.getElementById('buttonModelD').addEventListener('click', () => { model = 'D'; loadModel(model); });
 
-document.getElementById('buttonIntrinsicSaliency').addEventListener('click', () =>{ param = 'saliency_limper'; console.log(model, param); loadModel(model, param)});
+document.getElementById('buttonIntrinsicSaliency').addEventListener('click', () =>{ param = 'saliency_limper'; console.log("xx", model, param); loadModel(model, param); console.log("xx", model, param)});
+document.getElementById('buttonVisibility').addEventListener('click', () =>{ param = "sommets_visibles_centered"; console.log(model, param); loadModel(model, param)});
+document.getElementById('buttonEyeSurfaceVisibility').addEventListener('click', () =>{ param = "eyes"; console.log(model, param); loadModel(model, param)});
 
 // --- Animation Loop ---
 function animate() {
@@ -135,4 +137,5 @@ window.addEventListener('resize', () => {
 });
 
 // Load initial model on page load
+console.log("ccc", model, param)
 loadModel(model, param);
