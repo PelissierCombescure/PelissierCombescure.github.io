@@ -85,7 +85,13 @@ function loadModel(m, p) {
             currentModel = new THREE.Mesh(geometry, material);
 
             // Try rotating around the X-axis by 180 degrees (Math.PI radians)
-            currentModel.rotation.x = Math.PI;
+            if (!(param === "eyes")) {
+                currentModel.rotation.x = Math.PI;
+            }
+
+            if (model === 'bimba' && param === 'saliency_limper') {
+                currentModel.rotation.x = Math.PI;
+            }
 
             scene.add(currentModel);
 
@@ -113,7 +119,7 @@ function loadModel(m, p) {
 // --- Event Listeners for Buttons ---
 document.getElementById('buttonGorgoile').addEventListener('click', () =>{ model = 'gorgoile'; loadModel(model, param)});
 
-document.getElementById('buttonModelB').addEventListener('click', () => { model = 'B'; loadModel(model); console.log(model); });
+document.getElementById('buttonModelBimba').addEventListener('click', () => { model = 'bimba'; loadModel(model); console.log(model); });
 document.getElementById('buttonModelC').addEventListener('click', () => { model = 'C'; loadModel(model); });
 document.getElementById('buttonModelD').addEventListener('click', () => { model = 'D'; loadModel(model); });
 
