@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
 
+let model = "gorgoile"; // Default model to load
+let param = "sommets_visibles_centered"; // Default parameter to visualize
+
 // --- Scene Setup ---
 const scene = new THREE.Scene();
 // Set the background color to white
@@ -39,11 +42,11 @@ const modelPaths = {
     D: 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/ply/ascii/face.ply' // Example PLY model
 };
 
-function loadModel(modelKey) {
-    if (!modelPaths[modelKey]) {
-        console.error(`Model path for key ${modelKey} not found.`);
-        return;
-    }
+function loadModel(m, p) {
+    // if (!modelPaths[modelKey]) {
+    //     console.error(`Model path for key ${modelKey} not found.`);
+    //     return;
+    // }
 
     // Show loading message
     loadingMessage.style.display = 'block';
@@ -55,8 +58,11 @@ function loadModel(modelKey) {
         currentModel.material.dispose();
     }
 
+    let path = "https://raw.githubusercontent.com/PelissierCombescure/PelissierCombescure.github.io/main/graphics/visapp/3d/"+ m +"/"+ p +".ply";
+    console.log("Loading model from path:", path);
+
     loader.load(
-        modelPaths[modelKey],
+        path,
         function (geometry) {
             // Center the geometry
             geometry.computeBoundingBox();
@@ -105,10 +111,13 @@ function loadModel(modelKey) {
 }
 
 // --- Event Listeners for Buttons ---
-document.getElementById('buttonA').addEventListener('click', () => loadModel('A'));
-document.getElementById('buttonB').addEventListener('click', () => loadModel('B'));
-document.getElementById('buttonC').addEventListener('click', () => loadModel('C'));
-document.getElementById('buttonD').addEventListener('click', () => loadModel('D'));
+document.getElementById('buttonGorgoile').addEventListener('click', () =>{ model = 'gorgoile'; loadModel(model, param)});
+
+document.getElementById('buttonModelB').addEventListener('click', () => { model = 'B'; loadModel(model); console.log(model); });
+document.getElementById('buttonModelC').addEventListener('click', () => { model = 'C'; loadModel(model); });
+document.getElementById('buttonModelD').addEventListener('click', () => { model = 'D'; loadModel(model); });
+
+document.getElementById('buttonIntrinsicSaliency').addEventListener('click', () =>{ param = 'saliency_limper'; console.log(model, param); loadModel(model, param)});
 
 // --- Animation Loop ---
 function animate() {
@@ -126,4 +135,4 @@ window.addEventListener('resize', () => {
 });
 
 // Load initial model on page load
-loadModel('A');
+loadModel(model, param);

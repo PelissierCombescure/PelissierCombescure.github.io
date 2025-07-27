@@ -30,8 +30,8 @@
     #viewer-container {
     /* flex-grow: 1; /* Remove or comment this out if you set a fixed height */
     position: relative;
-    width: 80vw;   /* Example: 80% of the viewport width */
-    height: 70vh;  /* Example: 70% of the viewport height */
+    width: 60vw;   /* Example: 80% of the viewport width */
+    height: 60vh;  /* Example: 70% of the viewport height */
     /* Or fixed pixels: */
     /* width: 1200px; */
     /* height: 800px; */
@@ -122,23 +122,31 @@
   </p>
 </div>
 
-<div class="container mt-5 text-center">
+<div class="container mt-2 text-center">
 <h4 class="text-center"><strong>3D Model Viewer</strong></h4>
-<p></p>
 </div>
 <!-- Interactive Results - Updated for OBJ loading -->
-<div class="row justify-content-center mb-4" id="buttons-container">
-   <div class="col-auto mx-2"> <button class="btn btn-primary" id="buttonA">Model A</button>
-   </div>
-   <div class="col-auto mx-2"> <button class="btn btn-primary" id="buttonB">Model B</button>
-   </div>
-   <div class="col-auto mx-2"> <button class="btn btn-primary" id="buttonC">Model C</button>
-   </div>
-   <div class="col-auto mx-2"> <button class="btn btn-primary" id="buttonD">Model D</button>
-   </div>
+<div class="container mt-2 text-center">
+  <p>Select a model to visualize the best viewpoint selection:</p>
+  <div class="row justify-content-center gap-3 mb-4">  
+    <div class="col-auto"> <button class="btn btn-primary" id="buttonGorgoile">Gorgoile</button> </div>
+    <div class="col-auto"> <button class="btn btn-primary" id="buttonModelB">Model B</button> </div>
+    <div class="col-auto"> <button class="btn btn-primary" id="buttonModelC">Model C</button> </div>
+    <div class="col-auto"> <button class="btn btn-primary" id="buttonModelD">Model D</button> </div>
+  </div>
 </div>
 
-<div id="viewer-container">
+<div class="container mt-2 text-center">
+  <p>Select a parameter to visualize:</p>
+  <div class="row justify-content-center gap-3 mb-4">  
+    <div class="col-auto"> <button class="btn btn-primary" id="buttonVisibility">Visibility</button> </div>
+    <div class="col-auto"> <button class="btn btn-primary" id="buttonEyeSurfaceVisibility">Eye Surface Visibility</button> </div>
+    <div class="col-auto"> <button class="btn btn-primary" id="buttonIntrinsicSaliency">Intrinsic Saliency</button> </div>
+  </div>
+</div>
+
+
+<div id="viewer-container" class="row justify-content-center mb-5">
         <div id="loading-message">Loading 3D Model...</div>
         </div>
 
