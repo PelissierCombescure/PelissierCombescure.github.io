@@ -25,6 +25,19 @@
     }
     .copy-button:hover { background-color: #0056b3; }
     #citation { font-family: monospace; background: #eee; padding: 10px; border-radius: 5px; }
+
+
+    #viewer-container {
+    /* flex-grow: 1; /* Remove or comment this out if you set a fixed height */
+    position: relative;
+    width: 80vw;   /* Example: 80% of the viewport width */
+    height: 70vh;  /* Example: 70% of the viewport height */
+    /* Or fixed pixels: */
+    /* width: 1200px; */
+    /* height: 800px; */
+    margin: 0 auto; /* Center it horizontally if using a fixed width */
+    border: 1px solid #ccc; /* Optional: Add a border to see its boundaries */
+    }
   </style>
 
 </head>
@@ -109,108 +122,35 @@
   </p>
 </div>
 
-<!-- Interactive Results - Updated for OBJ loading -->
 <div class="container mt-5 text-center">
-  <h4 class="text-center"><strong>3D Model Viewer</strong></h4>
-  <p>Click a button to load a different 3D object:</p>
-
-  <div class="row justify-content-center g-4">
-    <!-- Pair 1 -->
-    <div class="col-md-3">
-        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/gorgoile/sommets_visibles_centered.ply')">A</button>
-        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/gorgoile/sommets_visibles_centered.ply')">B</button>
-        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/gorgoile/sommets_visibles_centered.ply')">C</button>
-        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/gorgoile/sommets_visibles_centered.ply')">D</button>
-    </div>
-  <div id="viewer3d" class="mt-3" style="width: 100%; height: 500px; border: 1px solid #ccc;"></div>
+<h4 class="text-center"><strong>3D Model Viewer</strong></h4>
+<p></p>
+</div>
+<!-- Interactive Results - Updated for OBJ loading -->
+<div class="row justify-content-center mb-4" id="buttons-container">
+   <div class="col-auto mx-2"> <button class="btn btn-primary" id="buttonA">Model A</button>
+   </div>
+   <div class="col-auto mx-2"> <button class="btn btn-primary" id="buttonB">Model B</button>
+   </div>
+   <div class="col-auto mx-2"> <button class="btn btn-primary" id="buttonC">Model C</button>
+   </div>
+   <div class="col-auto mx-2"> <button class="btn btn-primary" id="buttonD">Model D</button>
+   </div>
 </div>
 
+<div id="viewer-container">
+        <div id="loading-message">Loading 3D Model...</div>
+        </div>
 
-<!-- Citation -->
-<div class="container mt-5">
-  <h4>Citation</h4>
-  <div id="citation">
-@inproceedings{Grethen2025StereoLunar,<br>
-&nbsp;&nbsp;title={Adapting Stereo Vision From Objects to 3D Lunar Surface Reconstruction with the StereoLunar Dataset},<br>
-&nbsp;&nbsp;author={Clémentine Grethen and Simone Gasparini and Géraldine Morin and Jérémy Lebreton and Lucas Marti and Manuel Sanchez-Gestido},<br>
-&nbsp;&nbsp;booktitle={Proceedings of the ICCV Workshop on From Street to Space},<br>
-&nbsp;&nbsp;year={2025}<br>
-}
-  </div>
-  <div class="text-center mt-3">
-    <button class="copy-button" onclick="copyTextToClipboard()">Copy Citation</button>
-  </div>
-</div>
-<!-- -------------------------------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------------------------------- -->
-<!-- -------------------------------------------------------------------------------------------- -->
-<script>
-function copyTextToClipboard() {
-  const text = document.getElementById('citation').innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    alert("Citation copied to clipboard!");
-  });
-}
-</script>
-<script type="module">
-  import * as THREE from "https://esm.run/three@0.152.2";
-  import { PLYLoader } from "https://esm.run/three@0.152.2/examples/jsm/loaders/PLYLoader.js";
-  import { OrbitControls } from "https://esm.run/three@0.152.2/examples/jsm/controls/OrbitControls.js";
-
-  let scene, camera, renderer, loader, model, controls;
-
-  function initViewer() {
-    const viewer = document.getElementById('viewer3d');
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff); // fond blanc
-
-    camera = new THREE.PerspectiveCamera(60, viewer.clientWidth / viewer.clientHeight, 0.01, 10000);
-    camera.position.set(0, 0, 2);
-
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(viewer.clientWidth, viewer.clientHeight);
-    viewer.appendChild(renderer.domElement);
-
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.update();
-
-    loader = new PLYLoader();
-
-    animate();
-  }
-
-  function loadScene(plyFile) {
-    if (model) scene.remove(model);
-    loader.load(plyFile, function (geometry) {
-      geometry.computeVertexNormals();
-      geometry.center();
-      const scaleFactor = 1.0 / geometry.boundingBox.max.length();
-      geometry.scale(scaleFactor, scaleFactor, scaleFactor);
-
-      const material = new THREE.PointsMaterial({ size: 0.01, vertexColors: true });
-      model = new THREE.Points(geometry, material);
-      scene.add(model);
-      camera.position.set(0, 0, 2);
-    },
-    // Optional: Add onProgress and onError callbacks for better debugging
-    undefined, // onProgress
-    function (error) {
-        console.error('An error happened loading the PLY file:', error);
-    });
-  }
-
-  function animate() {
-    requestAnimationFrame(animate);
-    if (model) model.rotation.y += 0.003;
-    controls.update();
-    renderer.render(scene, camera);
-  }
-
-  window.addEventListener('load', initViewer);
-  window.loadScene = loadScene; // Make it accessible from the onclick buttons
-</script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/"
+          }
+        }
+    </script>
+    <script type="module" src="app_visapp.js"></script>
 
 </body>
 </html>
