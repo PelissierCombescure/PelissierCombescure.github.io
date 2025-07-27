@@ -117,11 +117,10 @@
   <div class="row justify-content-center g-4">
     <!-- Pair 1 -->
     <div class="col-md-3">
-        <button class="btn btn-primary w-100" onclick="loadModel('../data/model_a.obj')">A</button>
-        <button class="btn btn-primary w-100" onclick="loadModel('../data/model_b.obj')">B</button>
-        <button class="btn btn-primary w-100" onclick="loadModel('../data/model_c.obj')">C</button>
-        <button class="btn btn-primary w-100" onclick="loadModel('../data/model_d.obj')">D</button>
-        <button class="btn btn-primary w-100" onclick="loadModel('../data/model_e.obj')">E</button>
+        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/gorgoile/sommets_visibles_centered.ply')">A</button>
+        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/gorgoile/sommets_visibles_centered.ply')">B</button>
+        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/gorgoile/sommets_visibles_centered.ply')">C</button>
+        <button class="btn btn-primary w-100" onclick="loadScene('../graphics/visapp/3d/gorgoile/sommets_visibles_centered.ply')">D</button>
     </div>
   <div id="viewer3d" class="mt-3" style="width: 100%; height: 500px; border: 1px solid #ccc;"></div>
 </div>
@@ -147,136 +146,25 @@
 <!-- -------------------------------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------------------------------- -->
-<!-- Script for copy -->
-<!-- Script for copy -->
 <script>
 function copyTextToClipboard() {
   const text = document.getElementById('citation').innerText;
-  // Use document.execCommand for broader compatibility in iframes
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  document.body.appendChild(textArea);
-  textArea.select();
-  try {
-    document.execCommand('copy');
-    // Using a custom message box instead of alert()
-    displayMessageBox("Citation copied to clipboard!");
-  } catch (err) {
-    console.error('Failed to copy text: ', err);
-    displayMessageBox("Failed to copy citation. Please try again manually.");
-  }
-  document.body.removeChild(textArea);
-}
-
-// Custom message box function
-function displayMessageBox(message) {
-  const messageBox = document.createElement('div');
-  messageBox.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #333;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 1000;
-    font-family: 'Arial', sans-serif;
-    font-size: 1rem;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-  `;
-  messageBox.textContent = message;
-  document.body.appendChild(messageBox);
-
-  // Fade in
-  setTimeout(() => {
-    messageBox.style.opacity = 1;
-  }, 10);
-
-  // Fade out and remove after 3 seconds
-  setTimeout(() => {
-    messageBox.style.opacity = 0;
-    messageBox.addEventListener('transitionend', () => messageBox.remove());
-  }, 3000);
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Citation copied to clipboard!");
+  });
 }
 </script>
-
-<!-- Script for copy -->
-<script>
-function copyTextToClipboard() {
-  const text = document.getElementById('citation').innerText;
-  // Use document.execCommand for broader compatibility in iframes
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-  document.body.appendChild(textArea);
-  textArea.select();
-  try {
-    document.execCommand('copy');
-    // Using a custom message box instead of alert()
-    displayMessageBox("Citation copied to clipboard!");
-  } catch (err) {
-    console.error('Failed to copy text: ', err);
-    displayMessageBox("Failed to copy citation. Please try again manually.");
-  }
-  document.body.removeChild(textArea);
-}
-
-// Custom message box function
-function displayMessageBox(message) {
-  const messageBox = document.createElement('div');
-  messageBox.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #333;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 1000;
-    font-family: 'Arial', sans-serif;
-    font-size: 1rem;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-  `;
-  messageBox.textContent = message;
-  document.body.appendChild(messageBox);
-
-  // Fade in
-  setTimeout(() => {
-    messageBox.style.opacity = 1;
-  }, 10);
-
-  // Fade out and remove after 3 seconds
-  setTimeout(() => {
-    messageBox.style.opacity = 0;
-    messageBox.addEventListener('transitionend', () => messageBox.remove());
-  }, 3000);
-}
-</script>
-
 <script type="module">
   import * as THREE from "https://esm.run/three@0.152.2";
-  import { OBJLoader } from "https://esm.run/three@0.152.2/examples/jsm/loaders/OBJLoader.js";
+  import { PLYLoader } from "https://esm.run/three@0.152.2/examples/jsm/loaders/PLYLoader.js";
   import { OrbitControls } from "https://esm.run/three@0.152.2/examples/jsm/controls/OrbitControls.js";
 
   let scene, camera, renderer, loader, model, controls;
-  let defaultMaterial;
 
   function initViewer() {
     const viewer = document.getElementById('viewer3d');
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
-
-    const ambientLight = new THREE.AmbientLight(0x404040, 2);
-    scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(1, 1, 1).normalize();
-    scene.add(directionalLight);
+    scene.background = new THREE.Color(0xffffff); // fond blanc
 
     camera = new THREE.PerspectiveCamera(60, viewer.clientWidth / viewer.clientHeight, 0.01, 10000);
     camera.position.set(0, 0, 2);
@@ -286,103 +174,42 @@ function displayMessageBox(message) {
     viewer.appendChild(renderer.domElement);
 
     controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.screenSpacePanning = false;
-    controls.minDistance = 0.5;
-    controls.maxDistance = 10;
-    // Removed: controls.maxPolarAngle = Math.PI / 2; // This line restricted vertical rotation
+    controls.update();
 
-    loader = new OBJLoader();
-    defaultMaterial = new THREE.MeshStandardMaterial({ color: 0x007bff, metalness: 0.2, roughness: 0.8 });
-
-    window.addEventListener('resize', onWindowResize);
+    loader = new PLYLoader();
 
     animate();
-
-    // Load the default model using the correct raw.githubusercontent.com URL
-    loadModel('https://raw.githubusercontent.com/PelissierCombescure/PelissierCombescure.github.io/main/graphics/visapp/3d/gorgoile/sommets_visibles_centered.obj');
   }
 
-  function onWindowResize() {
-    const viewer = document.getElementById('viewer3d');
-    camera.aspect = viewer.clientWidth / viewer.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(viewer.clientWidth, viewer.clientHeight);
-  }
+  function loadScene(plyFile) {
+    if (model) scene.remove(model);
+    loader.load(plyFile, function (geometry) {
+      geometry.computeVertexNormals();
+      geometry.center();
+      const scaleFactor = 1.0 / geometry.boundingBox.max.length();
+      geometry.scale(scaleFactor, scaleFactor, scaleFactor);
 
-  function loadModel(objFile) {
-    if (model) {
-      scene.remove(model);
-      model.traverse(function (child) {
-        if (child.isMesh) {
-          child.geometry.dispose();
-          if (child.material.isMaterial) {
-            child.material.dispose();
-          } else if (Array.isArray(child.material)) {
-            for (const material of child.material) material.dispose();
-          }
-        }
-      });
-    }
-
-    const viewer = document.getElementById('viewer3d');
-    viewer.style.backgroundImage = 'url("https://placehold.co/100x100/007bff/ffffff?text=Loading...")';
-    viewer.style.backgroundRepeat = 'no-repeat';
-    viewer.style.backgroundPosition = 'center';
-
-    loader.load(
-      objFile,
-      function (object) {
-        viewer.style.backgroundImage = 'none';
-
-        object.traverse(function (child) {
-          if (child.isMesh) {
-            if (!child.material || (Array.isArray(child.material) && child.material.length === 0)) {
-              child.material = defaultMaterial;
-            }
-          }
-        });
-
-        const box = new THREE.Box3().setFromObject(object);
-        const center = box.getCenter(new THREE.Vector3());
-        const size = box.getSize(new THREE.Vector3());
-
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const scaleFactor = 1.0 / maxDim;
-        object.scale.set(scaleFactor, scaleFactor, scaleFactor);
-
-        const scaledBox = new THREE.Box3().setFromObject(object);
-        const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
-
-        object.position.sub(scaledCenter);
-
-        model = object;
-        scene.add(model);
-
-        camera.position.set(0, 0, 2);
-        controls.target.set(0, 0, 0);
-        controls.update();
-      },
-      function (xhr) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-      },
-      function (error) {
-        console.error('An error happened loading the OBJ file:', error);
-        viewer.style.backgroundImage = 'none';
-        displayMessageBox("Error loading 3D model. Check console for details.");
-      }
-    );
+      const material = new THREE.PointsMaterial({ size: 0.01, vertexColors: true });
+      model = new THREE.Points(geometry, material);
+      scene.add(model);
+      camera.position.set(0, 0, 2);
+    },
+    // Optional: Add onProgress and onError callbacks for better debugging
+    undefined, // onProgress
+    function (error) {
+        console.error('An error happened loading the PLY file:', error);
+    });
   }
 
   function animate() {
     requestAnimationFrame(animate);
+    if (model) model.rotation.y += 0.003;
     controls.update();
     renderer.render(scene, camera);
   }
 
   window.addEventListener('load', initViewer);
-  window.loadModel = loadModel;
+  window.loadScene = loadScene; // Make it accessible from the onclick buttons
 </script>
 
 </body>
