@@ -14,76 +14,34 @@
   <link rel="stylesheet" href="dics.original.css">
   <script src="dics.original.js"></script>
 
-  <style>
-        .section-divider {
-            border: 0;
-            height: 1px;
-            background-color: #e0e0e0;
-            margin: 50px 0;
-        }
-        .announcement-box {
-	    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px auto;
-            text-align: center;
-            max-width: 90%;
-        }
-        .announcement-box h2 {
-            color: #2a2e31;
-            /* Light text color */
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        .announcement-box p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-        }
-        .announcement-box .btn-group a {
-            background-color: #373e47;
-            color: #cf0a0a;
-            border: 1px solid #545d68;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            display: inline-block;
-        }
-        .announcement-box .btn-group a:hover {
-            background-color: #444c56;
-            transform: translateY(-2px);
-        }
-        #copy-button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            background-color: #007bff;
-            color: rgb(127, 42, 42);
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.2s;
-        }
-        #copy-button:hover {
-            background-color: #0056b3;
-        }
-        .styled-btn {
-            display: inline-block;
-            padding: 12px 25px;
-            margin: 10px 5px;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            color: #343a40;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.2s ease-in-out;
-            background-color: #0a549d;
-        }
-        .styled-btn:hover {
-            background-color: #7a0d30;
-            border-color: #0b7aea;
-        }
+   <style>
+    body { font-family: 'Arial', sans-serif; }
+    .jumbotron { padding: 4rem 2rem; background-color: #ffffff; }
+    .nav-pills img { transition: opacity 0.2s ease-in-out; }
+    .hover-image-link:hover .first-image { display: none; }
+    .hover-image-link:hover .second-image { display: inline; }
+    .hover-image-link .second-image { display: none; }
+    .img-responsive { max-width: 100%; height: auto; }
+    .copy-button {
+      padding: 10px 20px; font-size: 1rem;
+      background-color: #007bff; color: white;
+      border: none; border-radius: 5px; cursor: pointer;
+    }
+    .copy-button:hover { background-color: #0056b3; }
+    #citation { font-family: monospace; background: #eee; padding: 10px; border-radius: 5px; }
+
+
+    #viewer-container {
+    /* flex-grow: 1; /* Remove or comment this out if you set a fixed height */
+    position: relative;
+    width: 60vw;   /* Example: 80% of the viewport width */
+    height: 60vh;  /* Example: 70% of the viewport height */
+    /* Or fixed pixels: */
+    /* width: 1200px; */
+    /* height: 800px; */
+    margin: 0 auto; /* Center it horizontally if using a fixed width */
+    border: 1px solid #ccc; /* Optional: Add a border to see its boundaries */
+    }
   </style>
 
 </head>
@@ -98,14 +56,14 @@
       <div class="col-md-10">
         <p><strong> <a href="https://pelissiercombescure.github.io">Marie Pelissier-Combescure</a></strong>,  <a href="https://scholar.google.com/citations?user=H8QDhhAAAAAJ&hl=fr">Géraldine Morin</a>, <a href="https://scholar.google.com/citations?user=yquWZwoAAAAJ&hl=fr">Sylvie Chambon</a></p>
         <p>IRIT, University of Toulouse, France</p>
-        <p style="color:rgb(127, 11, 235);"><strong>The Scandinavian Conference on Image Analysis (SCIA)</strong>, 2023, Levi, Finland</p>
+        <p style="color:rgb(235, 11, 33);"><strong>The Scandinavian Conference on Image Analysis (SCIA)</strong>, 2023, Levi, Finland</p>
       </div>
     </div>
 
 <div class="row justify-content-center mt-4">
   <ul class="nav nav-pills justify-content-center text-center" style="width:100%;">
     <li class="nav-item" style="display:inline-block; margin:0 30px;">
-      <img class="first-image" src="../graphics/scia/accroche-scia.png" height="250px"> 
+      <img class="first-image" src="../graphics/scia/accroche-scia.png" height="350px"> 
       <br /><br />
       <p>Example of three possible defaults. In this figure we illustrate three aspects we want to penalize with the proposed relevance score. </p>
       <a href="https://hal.science/hal-05007308" target="_blank" rel="noopener noreferrer" style="text-decoration: none">
